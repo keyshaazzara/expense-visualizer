@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense & Budget Visualizer - Liquid Glass</title>
+    <!-- Penghubung ke file CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- CDN Chart.js untuk Pie Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header dengan Dark/Mode Toggle -->
+        <header class="app-header">
+            <h1>Expense & Budget Visualizer</h1>
+            <button id="theme-toggle" class="btn-glass">🌙 Dark Mode</button>
+        </header>
+
+        <!-- Total Balance & Limit Settings Section -->
+        <div class="glass-card balance-card">
+            <h2>TOTAL BALANCE</h2>
+            <div id="total-balance" class="balance-amount">$0.00</div>
+            
+            <!-- Challenge 3: Highlight spending over a set limit -->
+            <div class="limit-section">
+                <label for="spending-limit">Monthly Budget Limit:</label>
+                <div class="limit-input-group">
+                    <input type="number" id="spending-limit" placeholder="Atur batas (cth: 100)" step="0.01">
+                    <button id="set-limit-btn" class="btn-glass-small">Set</button>
+                </div>
+                <div id="limit-warning" class="limit-warning hidden">⚠️ Peringatan: Pengeluaran melebihi batas budget!</div>
+            </div>
+        </div>
+
+        <!-- Add Transaction Form -->
+        <div class="glass-card form-card">
+            <h3>Add Transaction</h3>
+            <form id="transaction-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" placeholder="Contoh: Cilok" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-amount">Amount</label>
+                    <input type="number" id="item-amount" step="0.01" placeholder="Contoh: 14.94" required>
+                </div>
+                
+                <!-- Challenge 1: Custom Categories -->
+                <div class="form-group">
+                    <label for="item-category">Category</label>
+                    <select id="item-category" required>
+                        <option value="" disabled selected>Pilih Kategori</option>
+                        <option value="Food">Food</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Fun">Fun</option>
+                    </select>
+                </div>
+
+                <!-- Input untuk nambah kategori baru -->
+                <div class="form-group custom-cat-group">
+                    <input type="text" id="new-category-input" placeholder="Tambah kategori baru...">
+                    <button type="button" id="add-category-btn" class="btn-glass-small">+ Add Cat</button>
+                </div>
+
+                <button type="submit" class="btn-submit">Add Transaction</button>
+            </form>
+        </div>
+
+        <!-- Grid untuk Transaction List & Visual Chart -->
+        <div class="content-grid">
+            <!-- Transaction List -->
+            <div class="glass-card list-card">
+                <h3>Transactions</h3>
+                <div id="transaction-list" class="transaction-list">
+                    <!-- Daftar transaksi akan muncul di sini secara dinamis -->
+                </div>
+            </div>
+
+            <!-- Visual Chart -->
+            <div class="glass-card chart-card">
+                <h3>Spending by Category</h3>
+                <div class="chart-container">
+                    <canvas id="spendingChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Penghubung ke file JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
